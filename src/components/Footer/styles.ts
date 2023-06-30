@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const FooterContainer = styled.footer`
   display: flex;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
   color: ${(props) => props.theme['base-white']};
   background-color: ${(props) => props.theme['gray-800']};
   padding: 1rem;
@@ -20,6 +21,18 @@ export const FooterContainer = styled.footer`
     &:hover {
       opacity: 0.8;
       transition: 200ms;
+    }
+  }
+
+  .separator {
+    display: none;
+  }
+
+  @media (min-width: 680px) {
+    flex-direction: row;
+
+    .separator {
+      display: flex;
     }
   }
 `
