@@ -4,8 +4,6 @@ interface IpResultsData {
   ipAddress: string
   country: string
   region: string
-  city: string
-  zip: string
   timezone: string
   latitude: string
   longitude: string

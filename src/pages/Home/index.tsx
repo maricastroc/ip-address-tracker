@@ -11,20 +11,21 @@ import { toast } from 'react-toastify'
 export function Home() {
   const { ip, handleSetIpResults } = useContext(IpAddressContext)
 
+  const apiKey = 'at_mY5YVLbBcoZuQL6qlFvmH8O5RfV3w'
+
   useEffect(() => {
     const getGeolocationByIP = async function (ip: string) {
-      const response = await axios.get(`http://ip-api.com/json/${ip}`)
+      const response = await axios.get(`
+      https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ip}`)
 
-      if (response.data.status !== 'fail') {
+      if (response.data) {
         const results = {
-          ipAddress: response.data.query,
-          country: response.data.countryCode,
-          region: response.data.regionName,
-          city: response.data.city,
-          zip: response.data.zip,
-          timezone: response.data.timezone,
-          latitude: response.data.lat,
-          longitude: response.data.lon,
+          ipAddress: response.data.ip,
+          country: response.data.location.country,
+          region: response.data.location.region,
+          timezone: response.data.location.timezone,
+          latitude: response.data.location.lat,
+          longitude: response.data.location.lng,
           isp: response.data.isp,
         }
         console.log(response.data)
@@ -35,8 +36,6 @@ export function Home() {
           ipAddress: '192.212.174.101',
           country: 'US',
           region: 'California',
-          city: 'California',
-          zip: '91770',
           timezone: 'America/Los_Angeles',
           latitude: '34.0648',
           longitude: '-118.086',

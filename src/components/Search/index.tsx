@@ -11,7 +11,6 @@ import {
 } from './styles'
 import { useContext } from 'react'
 import { IpAddressContext } from '../../context/CheckoutIpAddress'
-import { DateTime } from 'luxon'
 
 interface FormData {
   ipAddress: string
@@ -49,18 +48,12 @@ export function Search() {
           <Separator />
           <ResultItem>
             <p>Location</p>
-            <strong>
-              {`${ipResults?.region}, ${ipResults?.country} ${ipResults?.zip}`}
-            </strong>
+            <strong>{`${ipResults?.region}, ${ipResults?.country}`}</strong>
           </ResultItem>
           <Separator />
           <ResultItem>
             <p>Timezone</p>
-            <strong>
-              {`UTC ${DateTime.local()
-                .setZone(ipResults?.timezone)
-                .toFormat('ZZ')}`}
-            </strong>
+            <strong>{`UTC ${ipResults?.timezone}`}</strong>
           </ResultItem>
           <Separator />
           <ResultItem>
