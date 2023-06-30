@@ -13,6 +13,10 @@ export const HeaderContainer = styled.header`
   @media (min-width: 480px) {
     background-image: url('./assets/pattern-bg-desktop.png');
   }
+
+  @media (min-width: 1200px) {
+    height: 17.5rem;
+  }
 `
 
 export const Heading = styled.h2`

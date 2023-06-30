@@ -10,6 +10,10 @@ export const SearchContainer = styled.section`
   padding: 0 1.5rem;
   margin-top: -17rem;
   width: 100%;
+
+  @media (min-width: 1200px) {
+    margin-top: -12rem;
+  }
 `
 
 export const SearchBarContainer = styled.form`
@@ -29,7 +33,7 @@ export const Input = styled.input`
   border-bottom-left-radius: 8px;
   background-color: ${(props) => props.theme['base-white']};
   font-size: 1.125rem;
-  border: 2px solid ${(props) => props.theme['base-white']};
+  border: 1px solid ${(props) => props.theme['base-white']};
   width: 80%;
   flex-grow: 1;
   padding: 1.125rem 1.5rem;
@@ -39,7 +43,7 @@ export const Input = styled.input`
   }
 `
 
-export const SearchButton = styled.button`
+export const SubmitButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -54,6 +58,12 @@ export const SearchButton = styled.button`
   svg {
     color: ${(props) => props.theme['base-white']};
     z-index: 10;
+  }
+
+  &:hover {
+    background-color: ${(props) => props.theme['gray-800']};
+    border: 2px solid ${(props) => props.theme['gray-800']};
+    transition: 200ms ease in out;
   }
 `
 
@@ -74,7 +84,7 @@ export const ResultsContainer = styled.div`
   @media (min-width: 1200px) {
     max-width: 1100px;
     flex-direction: row;
-    padding: 2.5rem;
+    padding: 2rem;
   }
 `
 
@@ -106,7 +116,7 @@ export const ResultItem = styled.div`
     }
 
     strong {
-      font-size: 1.625rem;
+      font-size: 1.5rem;
     }
   }
 `

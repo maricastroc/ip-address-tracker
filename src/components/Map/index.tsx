@@ -2,11 +2,18 @@ import { useState, useContext, useEffect } from 'react'
 import { TileLayer, Marker, Popup } from 'react-leaflet'
 import { StyledMapContainer } from './styles'
 import { IpAddressContext } from '../../context/CheckoutIpAddress'
+import L from 'leaflet'
 
 type Coordinates = {
   latitude: number
   longitude: number
 }
+
+const customIcon = L.icon({
+  iconUrl: '../assets/icon-location.svg',
+  iconSize: [46, 56],
+  iconAnchor: [0, 0],
+})
 
 function DynamicMap({ coordinates }: { coordinates: Coordinates }) {
   return (
@@ -18,14 +25,10 @@ function DynamicMap({ coordinates }: { coordinates: Coordinates }) {
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <Marker position={[coordinates.latitude, coordinates.longitude]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-
-      {/* Adicione mais marcadores aqui conforme necessário */}
-      <Marker position={[51.51, -0.1]}>
+      <Marker
+        position={[coordinates.latitude, coordinates.longitude]}
+        icon={customIcon}
+      >
         <Popup>
           Another marker popup. <br /> Customizable content.
         </Popup>

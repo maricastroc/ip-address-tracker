@@ -1,16 +1,16 @@
-import { CaretRight } from 'phosphor-react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { CaretRight } from 'phosphor-react'
+import { IpAddressContext } from '../../context/CheckoutIpAddress'
 import {
   Input,
   ResultItem,
   ResultsContainer,
   SearchBarContainer,
-  SearchButton,
+  SubmitButton,
   SearchContainer,
   Separator,
 } from './styles'
-import { useContext } from 'react'
-import { IpAddressContext } from '../../context/CheckoutIpAddress'
 
 interface FormData {
   ipAddress: string
@@ -26,18 +26,28 @@ export function Search() {
     reset()
   }
 
+  function filterWords(allWords: string) {
+    if (allWords !== undefined && allWords !== null) {
+      const words = allWords.split(' ')
+      const twoWords = words.slice(0, 2)
+      const finalWord = twoWords.join(' ')
+      return finalWord
+    }
+  }
+
   return (
     <SearchContainer>
       <SearchBarContainer onSubmit={handleSubmit(onSubmit)}>
         <Input
           placeholder="Digit an IP"
+          title="An IPv4 address must contain three periods and four octets."
           required
           pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
           {...register('ipAddress', { required: true })}
         />
-        <SearchButton type="submit">
+        <SubmitButton type="submit">
           <CaretRight size={24} />
-        </SearchButton>
+        </SubmitButton>
       </SearchBarContainer>
       {ipResults && (
         <ResultsContainer>
@@ -58,7 +68,7 @@ export function Search() {
           <Separator />
           <ResultItem>
             <p>ISP</p>
-            <strong>{ipResults?.isp}</strong>
+            <strong>{filterWords(ipResults?.isp)}</strong>
           </ResultItem>
         </ResultsContainer>
       )}
